@@ -2,32 +2,45 @@ public class Main {
 
     public static void main(String[] args) {
 
-        LinkedList myLinkedList = new LinkedList(1);
+        // Create a new LinkedList and append values to it
+        LinkedList ll = new LinkedList(3);
+        ll.append(5);
+        ll.append(8);
+        ll.append(10);
+        ll.append(2);
+        ll.append(1);
 
-        myLinkedList.append(2);
-        myLinkedList.append(3);
-        myLinkedList.append(1);
-        myLinkedList.append(4);
-        myLinkedList.append(2);
-        myLinkedList.append(5);
+        // Print the list before partitioning
+        System.out.println("LL before partitionList:");
+        ll.printList(); // Output: 3 5 8 10 2 1
 
+        // Call the partitionList method with x = 5
+        ll.partitionList(5);
 
-        myLinkedList.removeDuplicates();
-
-        myLinkedList.printList();
+        // Print the list after partitioning
+        System.out.println("LL after partitionList:");
+        ll.printList(); // Output: 3 2 1 5 8 10
 
         /*
             EXPECTED OUTPUT:
             ----------------
-            1
-            2
+            LL before partition_list:
             3
-            4
             5
-            
+            8
+            10
+            2
+            1
+            LL after partition_list:
+            3
+            2
+            1
+            5
+            8
+            10
+
         */
 
     }
 
 }
-

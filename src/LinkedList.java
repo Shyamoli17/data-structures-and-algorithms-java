@@ -1,3 +1,6 @@
+import javax.xml.transform.stream.StreamSource;
+import java.sql.SQLOutput;
+
 public class LinkedList {
 
     private Node head;
@@ -75,23 +78,43 @@ public class LinkedList {
         length++;
     }
 
+//    public Node removeLast() {
+//        Node temp = head;
+//        Node pre = head;
+//        if (length == 0) {
+//            return null;
+//        }
+//        while (temp.next != null) {
+//            pre = temp;
+//            temp = temp.next;
+//        }
+//        tail = pre;
+//        tail.next = null;
+//        length--;
+//        if (length == 0) {
+//            head = null;
+//            tail = null;
+//        }
+//        return temp;
+//    }
+
     public Node removeLast() {
+        if (length == 0) return null;
         Node temp = head;
         Node pre = head;
-        if (length == 0) {
-            return null;
-        }
         while (temp.next != null) {
             pre = temp;
             temp = temp.next;
         }
-        tail = pre;
-        tail.next = null;
-        length--;
-        if (length == 0) {
+        // Now, temp is the last node, pre is the second last
+        if (length == 1) {
             head = null;
             tail = null;
+        } else {
+            tail = pre;
+            tail.next = null;
         }
+        length--;
         return temp;
     }
 
@@ -143,6 +166,7 @@ public class LinkedList {
     }
 
     public boolean insert(int index, int value) {
+        boolean isPossible = false;
         if (index < 0 || index > length) {
             return false;
         } else if (index == 0) {
@@ -161,14 +185,14 @@ public class LinkedList {
     }
 
     public Node remove(int index) {
-        if (index < 0 || index <= length) {
+        if (index < 0 || index >= length) {
             return null;
         }
         if (index == 0) {
-            removeFirst();
+            return removeFirst();
         }
         if (index == length - 1) {
-            removeLast();
+            return removeLast();
         }
         Node prev = get(index - 1);
         Node temp = prev.next;
@@ -249,6 +273,38 @@ public class LinkedList {
                 }
             }
             current = current.next;
+        }
+    }
+
+    public int binaryToDecimal(){
+        Node current = head;
+        int num =0;
+        while(current != null){
+            num = num * 2 + current.value;
+            current = current.next;
+        }
+        return num;
+    }
+
+    public void partitionList(int value){
+        Node D1 = null;
+        Node D2 = null;
+        Node prev1 = D1;
+        Node prev2 = D2;
+        if(head == null){
+            return;
+        }
+        Node current = head;
+        while(current == null) {
+            if (current.value <= value) {
+                prev1.next = current;
+            } else {
+                prev2.next = current;
+            }
+            current = current.next;
+            prev2.next = null;
+            prev1.next = D2.next;
+            head = D1.next;
         }
     }
 }
