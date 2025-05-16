@@ -311,4 +311,52 @@ public class LinkedList {
 
         return D1.next; // Return the head of the new list
     }
+
+    public void reverseBetween(int startIndex, int endIndex){
+        if (head == null) {
+            return;
+        }
+        Node dummyNode = new Node(0);
+        dummyNode.next = head;
+        Node prev = dummyNode;
+        for (int i = 0; i < startIndex ; i++) {
+            prev = prev.next;
+        }
+        Node current = prev.next;
+        for (int j = 0; j < (endIndex - startIndex); j++) {
+            Node tomove = current.next;
+            current.next = tomove.next;
+            tomove.next = prev.next;
+            prev.next = tomove;
+        }
+        head = dummyNode.next;
+    }
+
+    public void swapPairs() {
+        if (head == null || head.next == null) {
+            return;
+        }
+
+        Node dummy = new Node(0);
+        dummy.next = head;
+        Node prevNode = dummy;
+        Node currNode = head;
+
+        while (currNode != null && currNode.next != null) {
+            Node first = currNode;
+            Node second = currNode.next;
+
+            // Swapping
+            prevNode.next = second;
+            first.next = second.next;
+            second.next = first;
+
+            // Reinitializing for next swap
+            prevNode = first;
+            currNode = first.next;
+        }
+
+        head = dummy.next;
+    }
+
 }
