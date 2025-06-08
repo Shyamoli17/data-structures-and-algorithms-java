@@ -1,16 +1,18 @@
 public class MainDoublyLinkedList {
 
     public static void main(String[] args) {
-        DoublyLinkedList myDLL = new DoublyLinkedList(1);
+        DoublyLinkedList myDLL = new DoublyLinkedList(0);
+        myDLL.append(1);
         myDLL.append(2);
+        myDLL.append(3);
 
-        // (2) Items - Returns 2 Node
-        System.out.println(myDLL.removeLast().value);
-        // (1) Item - Returns 1 Node
-        System.out.println(myDLL.removeLast().value);
-        // (0) Items - Returns null
-        System.out.println(myDLL.removeLast());
+        System.out.println("DLL before set():");
+        myDLL.printList();
 
+        myDLL.set(2, 99);
+
+        System.out.println("\nDLL after set():");
+        myDLL.printList();
     }
 
 }
